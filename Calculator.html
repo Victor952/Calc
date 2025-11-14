@@ -164,6 +164,28 @@
                 operator = null;
                 updateDisplay();
             }
+            numberButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // textContent - текст кнопки
+                    appendNumber(button.textContent);
+                });
+            });
+            // addEventListener добавляет обработчик события
+            operatorButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // handleOperator - обработчик нажатия кнопки
+                    // getAttribute - получаем значение символа кнопки
+                    // data-operator - символ операции
+                    handleOperator(button.getAttribute('data-operator'));
+                });
+            });
+            // click - тип события (нажатие)
+            equalsButton.addEventListener('click', calculate);
+            clearButton.addEventListener('click', clearDisplay);
+            signChangeButton.addEventListener('click', changeSign);
+            decimalButton.addEventListener('click', appendDecimal);
+            // Инициализация дисплея
+            updateDisplay();
         });
     </script>
 </body>
