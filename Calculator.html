@@ -78,5 +78,24 @@
             <button class="decimal">.</button>
         </div>
     </div>
+    <script>
+        // DOMContentLoaded - событие, которое происходит, когда HTML документ полностью загружен и обработан
+        document.addEventListener('DOMContentLoaded', function() {
+            // Переменные калькулятора
+            let currentInput = '0';
+            let previousInput = '';
+            let operator = null;
+            let shouldResetDisplay = false;
+
+            // Получаем элементы DOM c помощью методов поиска
+            const display = document.getElementById('display');
+            const numberButtons = document.querySelectorAll('.number');
+            const operatorButtons = document.querySelectorAll('.operator');
+            const equalsButton = document.querySelector('.equals');
+            const clearButton = document.querySelector('.clear');
+            const signChangeButton = document.querySelector('.sign-change');
+            const decimalButton = document.querySelector('.decimal');
+        });
+    </script>
 </body>
 </html>
