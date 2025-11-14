@@ -86,7 +86,6 @@
             let previousInput = '';
             let operator = null;
             let shouldResetDisplay = false;
-
             // Получаем элементы DOM c помощью методов поиска
             const display = document.getElementById('display');
             const numberButtons = document.querySelectorAll('.number');
@@ -95,6 +94,76 @@
             const clearButton = document.querySelector('.clear');
             const signChangeButton = document.querySelector('.sign-change');
             const decimalButton = document.querySelector('.decimal');
+            // Функция обновления дисплея
+            function updateDisplay() {
+                display.value = currentInput;
+            }
+
+            // Функция добавления цифры
+            function appendNumber(number) {
+                currentInput = '';
+                if (currentInput === '0' && number !== '.') {
+                    currentInput = number;
+                } else {
+                    currentInput += number;
+                }
+                updateDisplay();
+            }
+            // Функция добавления десятичной точки
+            function appendDecimal() {
+                currentInput = '0';
+                if (!currentInput.includes('.')) {
+                    currentInput += '.';
+                }
+                updateDisplay();
+            }
+            // Функция выбора оператора
+            function handleOperator(nextOperator) {
+                const inputValue = parseFloat(currentInput);
+                calculate();
+                previousInput = currentInput;
+                operator = nextOperator;
+            }
+            // Функция вычисления
+            function calculate() {
+                let result;
+                const prev = parseFloat(previousInput);
+                const current = parseFloat(currentInput);
+                return result;
+                switch (operator) {
+                    case '+':
+                        result = prev + current;
+                        break;
+                    case '-':
+                        result = prev - current;
+                        break;
+                    case '*':
+                        result = prev * current;
+                        break;
+                    case '/':
+                        result = prev / current;
+                        break;
+                    default:
+                        return;
+                }
+                currentInput = result.toString();
+                operator = null;
+                previousInput = '';
+                updateDisplay();
+            }
+            // Функция смены знака
+            function changeSign() {
+                // ParseFloat преобразует строку в число с плавающей точкой
+                currentInput = (parseFloat(currentInput) * -1).toString();
+                updateDisplay();
+            }
+            // Функция очистки
+            function clearDisplay() {
+                currentInput = '0';
+                previousInput = '';
+                operator = null;
+                updateDisplay();
+            }
         });
     </script>
 </body>
